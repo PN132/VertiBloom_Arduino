@@ -158,8 +158,9 @@ void setup()
   }
 
   Serial.println("Enter duration of pollination: ");
+  delay(5000); //Gives user enough time to enter duration before program is started (5 secs)
   int duration = Serial.parseInt(); //Takes user input for time that plant is pollinated for 
-  timer = specificTime(days, duration); //Creates timer object with days and duration parameters
+  timer = specificTime(days, 7, 28, duration); //Creates timer object with days and duration parameters
 
 }
 
