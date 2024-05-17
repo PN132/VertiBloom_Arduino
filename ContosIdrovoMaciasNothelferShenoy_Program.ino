@@ -80,11 +80,13 @@ public:
     if(daysofWeek[timeinfo.tm_wday] == 1 && hour == timeinfo.tm_hour && timeinfo.tm_min == min && timeinfo.tm_sec <= (duration)) { //Time to pollinate :)
       digitalWrite(outputPin, HIGH); //Turns shaker on 
       digitalWrite(ledPin, HIGH); //Turns indicator light on
-      Serial.println("ON"); //Prints on messgae to serial monitor
+      Serial.println("Pollinator: ON"); //Prints on messgae to serial monitor
+      Serial.println();
     } else {                                                                                                                       //Not time to pollinate :(
       digitalWrite(outputPin, LOW); //Turns shaker off 
       digitalWrite(ledPin, LOW); //Turns indicator light off 
-      Serial.println("OFF"); //Prints off message to serial monitor
+      Serial.println("Pollinator: OFF"); //Prints off message to serial monitor
+      Serial.println();
     }
   }
 
@@ -166,10 +168,8 @@ struct tm time1; //creats tm struct as global variable
 //Content in loop occurs over and over again 
 void loop()
 {
-  delay(1000); //Delays calling the functions
-  if(time1.tm_sec == 0) { //checks status at top of every minute 
-    timer.printLocalTime(); //Prints out current time
-    timer.checkStatus(); //Checks if motor should be running 
-  }
+  delay(1000); //Delays calling the functions to every second 
+  timer.printLocalTime(); //Prints out current time
+  timer.checkStatus(); //Checks if motor should be running 
   
 }
